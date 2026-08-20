@@ -1,0 +1,41 @@
+[Defines]
+  # Module identity and the DXE dispatcher entry point.
+  INF_VERSION                    = 0x0001001A
+  BASE_NAME                      = MeiMeiDXEv3_ColdBoot
+  FILE_GUID                      = 6c98e4f3-9d8b-4e5a-b2e7-31a45b9c5d81
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 0.1
+  ENTRY_POINT                    = BC250DXEv3ColdBootEntryPoint
+
+[Sources]
+  # C implementation compiled into this driver.
+  BC250DXEv3ColdBootDxe.c
+
+[Packages]
+  # MdePkg supplies UEFI types/APIs; the local package supplies the request
+  # variable contract included by the source file.
+  MdePkg/MdePkg.dec
+  BC250DXEv3ColdBootPkg/BC250DXEv3ColdBootPkg.dec
+
+[LibraryClasses]
+  # Services used by the driver, including MMIO/IO access, console output,
+  # timing, memory helpers, and UEFI boot/runtime service tables.
+  BaseLib
+  BaseMemoryLib
+  DebugLib
+  IoLib
+  MemoryAllocationLib
+  TimerLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  UefiLib
+  UefiRuntimeServicesTableLib
+
+[Protocols]
+  # The variable architecture protocol is required before Runtime Services
+  # variable access is attempted.
+  gEfiVariableArchProtocolGuid
+
+[Depex]
+  # Delay dispatch until the variable services dependency is available.
+  gEfiVariableArchProtocolGuid

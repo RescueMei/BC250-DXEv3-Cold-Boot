@@ -1,0 +1,10 @@
+[Defines]
+  # Package identity used by EDK II when resolving this package's metadata.
+  DEC_SPECIFICATION              = 0x0001001A
+  PACKAGE_NAME                   = MeiMeiDXEv3_ColdBoot
+  PACKAGE_GUID                   = 7b5c841e-3a24-4d61-bc8e-8c705ad9c7d6
+  PACKAGE_VERSION                = 0.1
+
+[Includes]
+  # Expose the public request-variable header to package consumers.
+  Include
