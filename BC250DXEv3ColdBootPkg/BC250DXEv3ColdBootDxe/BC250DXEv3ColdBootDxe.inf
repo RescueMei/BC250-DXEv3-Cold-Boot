@@ -15,6 +15,7 @@
   # MdePkg supplies UEFI types/APIs; the local package supplies the request
   # variable contract included by the source file.
   MdePkg/MdePkg.dec
+  MeiMeiDXEv3SharedPkg/MeiMeiDXEv3SharedPkg.dec
   BC250DXEv3ColdBootPkg/BC250DXEv3ColdBootPkg.dec
 
 [LibraryClasses]
