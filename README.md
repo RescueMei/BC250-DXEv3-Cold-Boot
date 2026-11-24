@@ -2,8 +2,8 @@
 
 Late-loading DXE driver for the BC-250 that performs a scheduled cold boot when
 another driver asks for one, and shows a caller-supplied message during the
-countdown. It exists because the core and CU learning paths need a clean SMU
-state that only a real power cycle provides.
+countdown. It exists because the core and CU learning paths need a clean
+power-cycle state that only a real power cycle provides.
 
 > **Power requirement:** the scheduled wake needs standby power. On a BC-250
 > without native ATX control the platform powers off and must be started
@@ -18,7 +18,6 @@ state that only a real power cycle provides.
 | Produces | no protocol (variable contract) |
 | Consumes | `MeiMeiDXEv3RequestColdBoot` volatile variable |
 | Configuration | none (one-shot request variable) |
-| SMU SRAM | none |
 | Compliance | [COMPLIANCE.md](COMPLIANCE.md) |
 
 ## Dependencies
@@ -40,7 +39,7 @@ At `ReadyToBoot` the driver checks the volatile variable
 5. The ACPI PM1 RTC wake event is enabled.
 6. The platform enters ACPI S5 through the BC-250 PM1 block.
 
-The scheduled wake powers the platform back on, which reloads SMU firmware and
+The scheduled wake powers the platform back on, which reloads platform firmware and
 gives a genuine cold boot rather than a warm reset.
 
 Fail-closed behavior: if the RTC or wake path cannot be programmed, or no
@@ -91,11 +90,6 @@ no persistent configuration record.
 
 None produced. The request is a documented variable contract; there is no
 protocol lookup.
-
-## SMU SRAM placement
-
-None. See
-[SMU_MEMORY_MAP.md](https://github.com/RescueMei/BC250-DXEv3-Shared/blob/main/docs/SMU_MEMORY_MAP.md).
 
 ## Build
 

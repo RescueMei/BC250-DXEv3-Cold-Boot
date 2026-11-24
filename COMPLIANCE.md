@@ -9,15 +9,11 @@ Checklist and evidence:
 - [x] Configuration structs/constants come from the shared package; no local duplicates.
 - [x] Public protocol copies match the provider ABI; drift check passed.
 - [x] Driver-owned variable names/layouts documented.
-- [x] SMU SRAM allocations match `docs/SMU_MEMORY_MAP.md`; no overlap.
 - [x] Depex is correct; public protocol is installed unconditionally.
 - [x] Feature-disabled path performs no feature writes.
 - [x] Missing/malformed config is rejected safely; boot continues.
 - [x] Factory learning still occurs when the feature is disabled (Core/CU).
 - [x] No cross-driver private headers or internal functions.
-- [x] No forced-VID/force-state from SMU tick context.
-- [x] SMU writes are read-back verified; reserved fields preserved.
-- [x] Payload is 4-byte aligned, fits its lane, and was injection-tested.
 - [x] Individual driver build passed.
 - [x] Eight-driver integrated build passed.
 - [x] BC250 deployment reached `DEPLOY_OK` with expected state.
@@ -34,17 +30,9 @@ Publishes no protocol; the request is a documented variable contract.
 
 Depex: `gEfiVariableArchProtocolGuid`.
 
-## SMU map
-
-Owns no SMU SRAM.
-
 ## Write verification
 
 The reset-enable register is read back before the reset is attempted.
-
-## Payload
-
-Not applicable.
 
 
 
