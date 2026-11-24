@@ -82,6 +82,11 @@ sequence, so it never survives the power cycle.
 Message rules: even byte count, NUL within 160 `CHAR16` units, displayed text
 centered and clipped to the 78-column recovery box.
 
+## Configuration
+
+None. The only input is the volatile request variable described above; there is
+no persistent configuration record.
+
 ## Protocols
 
 None produced. The request is a documented variable contract; there is no
