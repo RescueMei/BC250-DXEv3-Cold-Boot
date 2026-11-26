@@ -107,6 +107,6 @@ Output:
 
 ## Validation
 
-2026-11-24, eight-driver stack: the driver was present in the validated build
+2026-11-25, nine-driver stack: the driver was present in the validated build
 and did not interfere with the boot or reboot paths. See
 [COMPLIANCE.md](COMPLIANCE.md).
