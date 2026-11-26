@@ -33,6 +33,7 @@
   UefiRuntimeServicesTableLib
 
 [Protocols]
+  gMeiMeiDXEv3DriverInfoProtocolGuid
   # The variable architecture protocol is required before Runtime Services
   # variable access is attempted.
   gEfiVariableArchProtocolGuid

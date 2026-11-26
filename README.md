@@ -88,6 +88,8 @@ no persistent configuration record.
 
 ## Protocols
 
+Also publishes `gMeiMeiDXEv3DriverInfoProtocolGuid` with its name, version, module GUID, config schema, and payload version for the `BC250-DXEv3-Driver-Info` telemetry driver.
+
 None produced. The request is a documented variable contract; there is no
 protocol lookup.
 

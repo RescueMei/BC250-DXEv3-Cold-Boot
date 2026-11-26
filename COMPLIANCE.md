@@ -10,6 +10,7 @@ Checklist and evidence:
 - [x] Public protocol copies match the provider ABI; drift check passed.
 - [x] Driver-owned variable names/layouts documented.
 - [x] Depex is correct; public protocol is installed unconditionally.
+- [x] Driver info record installed unconditionally.
 - [x] Feature-disabled path performs no feature writes.
 - [x] Missing/malformed config is rejected safely; boot continues.
 - [x] Factory learning still occurs when the feature is disabled (Core/CU).

@@ -32,6 +32,25 @@
 #include <Library/UefiRuntimeServicesTableLib.h>
 
 #include <BC250ColdBoot.h>
+#include <Protocol/MeiMeiDXEv3DriverInfo.h>
+
+//
+// Driver identity reported to the BC250-DXEv3-Driver-Info telemetry driver.
+//
+#define BC250_COLD_BOOT_VERSION  MEIMEIDXEV3_MAKE_VERSION (1, 0, 0)
+
+STATIC EFI_HANDLE  mDriverInfoHandle = NULL;
+
+STATIC CONST MEIMEIDXEV3_DRIVER_INFO  mDriverInfo = {
+  MEIMEIDXEV3_DRIVER_INFO_REVISION,
+  sizeof (MEIMEIDXEV3_DRIVER_INFO),
+  L"Cold-Boot",
+  BC250_COLD_BOOT_VERSION,
+  { 0x6C98E4F3, 0x9D8B, 0x4E5A, { 0xB2, 0xE7, 0x31, 0xA4, 0x5B, 0x9C, 0x5D, 0x81 } },
+  0,
+  0,
+  0
+};
 
 #define RTC_WAKE_DELAY_SECONDS      3U
 #define RECOVERY_COUNTDOWN_SECONDS  10U
@@ -663,7 +682,24 @@ BC250DXEv3ColdBootEntryPoint (
   IN EFI_SYSTEM_TABLE  *SystemTable
   )
 {
-  EFI_EVENT  Event;
+  EFI_EVENT   Event;
+  EFI_STATUS  Status;
+
+  //
+  // Publish this driver's identity record for the telemetry driver before any
+  // early return.
+  //
+  if (mDriverInfoHandle == NULL) {
+    Status = gBS->InstallProtocolInterface (
+                    &mDriverInfoHandle,
+                    &gMeiMeiDXEv3DriverInfoProtocolGuid,
+                    EFI_NATIVE_INTERFACE,
+                    (VOID *)&mDriverInfo
+                    );
+    if (EFI_ERROR (Status)) {
+      DEBUG ((DEBUG_ERROR, "BC250DXEv3ColdBootDxe: driver info install failed: %r\n", Status));
+    }
+  }
 
   return gBS->CreateEventEx (EVT_NOTIFY_SIGNAL, TPL_CALLBACK,
                              ColdBootReadyToBoot, NULL,
